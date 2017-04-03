@@ -1,0 +1,1 @@
+angular.module('core.menu', ['core.authentication']);

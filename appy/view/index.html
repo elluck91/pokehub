@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="pokeHubApp">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+	<title>PokeHub</title>
+  <base href="/"/>
+<!-- CSS  -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="view/lib/materialize/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="view/lib/materialize/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body ng-view>
+
+  <!--  Scripts-->
+  <script src="view/lib/angular/angular.min.js"></script>
+  <script src="view/lib/angular/angular-route.min.js"></script>
+
+  <script src="view/app.module.js"></script>
+  <script src="view/app.config.js"></script>
+
+  <script src="view/core/core.module.js"></script>
+  <script src="view/core/ngfupload/ng-file-upload-shim.min.js"></script>
+  <script src="view/core/ngfupload/ng-file-upload.min.js"></script>
+  <script src="view/core/authentication/authentication.module.js"></script>
+  <script src="view/core/authentication/authentication.service.js"></script>
+  <script src="view/core/uploadFile/uploadFile.module.js"></script>
+  <script src="view/core/uploadFile/uploadFile.service.js"></script>
+  <script src="view/core/data/data.module.js"></script>
+  <script src="view/core/data/data.service.js"></script>
+  <script src="view/core/menu/menu.module.js"></script>
+  <script src="view/core/menu/menu.component.js"></script>
+  <script src="view/core/fileViewer/fileViewer.module.js"></script>
+  <script src="view/core/fileViewer/fileViewer.component.js"></script>
+
+  <script src="view/status/status.module.js"></script>
+  <script src="view/status/emailSent/emailSent.module.js"></script>
+  <script src="view/status/emailSent/emailSent.component.js"></script>
+  <script src="view/status/userActivated/userActivated.module.js"></script>
+  <script src="view/status/userActivated/userActivated.component.js"></script>
+  <script src="view/status/errorOccurred/errorOccurred.module.js"></script>
+  <script src="view/status/errorOccurred/errorOccurred.component.js"></script>
+
+  <script src="view/home/home.module.js"></script>
+  <script src="view/home/home.component.js"></script>
+  <script src="view/login/login.module.js"></script>
+  <script src="view/login/login.component.js"></script>
+  <script src="view/register/register.module.js"></script>
+  <script src="view/register/register.component.js"></script>
+  <script src="view/profile/profile.module.js"></script>
+  <script src="view/profile/profile.component.js"></script>
+  
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="view/lib/materialize/js/materialize.js"></script>
+</body>
+</html>

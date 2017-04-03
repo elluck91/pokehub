@@ -1,0 +1,17 @@
+<head>
+	<link href="view/core/fileViewer/fileViewer.style.css" type="text/css" rel="stylesheet" />
+</head>
+<div class="container" ngf-drop ngf-select ng-model="files"	ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+						accept="image/*,application/pdf" ngf-pattern="image/*,application/pdf">
+	<div class="row">
+		<div class=" card col s12">
+			<ul>
+				<li ng-repeat="file in files">
+					<p>{{file.name}}</p>
+					<p>{{file.type}}</p>
+					<p>{{file.path}}</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

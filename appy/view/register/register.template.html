@@ -1,0 +1,36 @@
+<menu-bar></menu-bar>
+<div class="container">
+	<div class="row">
+		<h1 class="header black-text">Register</h1>
+		<p class="lead">Already a member? Please <a href="view/login">log in</a> instead.</p>
+		<div class="divider"></div>
+	</div>
+	<div class="row">
+		<form class="col s12" ng-submit="vm.onSubmit()">
+			<div class="row">
+				<div class="input-field col s6">
+					<input id="firstName" type="text" class="validate" ng-model="vm.credentials.firstName">
+					<label for="firstName">First Name</label>
+				</div>
+				<div class="input-field col s6">
+					<input id="lastName" type="text" class="validate" ng-model="vm.credentials.lastName">
+					<label for="lastName">Last Name</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<input id="email" type="email" class="validate" ng-model="vm.credentials.email">
+					<label for="email">Email</label>
+			</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<input id="password" type="password" class="validate" ng-model="vm.credentials.password">
+					<label for="password">Password</label>
+				</div>
+			</div>
+			<div class="row">
+				<button class="red btn" type="submit">Submit</button>
+		</form>
+	</div>
+</div>

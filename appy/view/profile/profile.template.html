@@ -1,0 +1,11 @@
+<menu-bar></menu-bar>
+<div class="container">
+	<div class="row">
+		<h1 class="header black-text">{{vm.firstName}} {{vm.lastName}}</h1>
+		<div class="divider"></div>
+	</div>
+	<ul>
+		<li ng-repeat="file in vm.files"> file </li>
+	</ul>
+	<file-viewer></file-viewer>
+</div>
