@@ -3,8 +3,6 @@ angular.module('core.uploadFile')
 	'Auth',
 	'$http',
 
-	this.createFile = createFile;
-
 	function UploadFile(Auth){
 		var self = this;
 		/*
@@ -67,7 +65,7 @@ angular.module('core.uploadFile')
 			};
 			return $http({                 
 				method: 'POST',                 
-				url: "localhost:8000/view/file",                 
+				url: "localhost:8000/file",                 
 				data: postData             
 			})
 			.then(function(result) {
