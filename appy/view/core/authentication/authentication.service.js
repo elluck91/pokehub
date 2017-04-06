@@ -54,6 +54,8 @@ angular.module('core.authentication')
             $window.localStorage['_id'] = response.data.user['_id'];
             $window.localStorage['firstName'] = response.data.user['firstName'];
             $window.localStorage['lastName'] = response.data.user['lastName'];
+
+            $http.defaults.headers.common.Authorization = response.data['refreshToken'];
           }
           return response;
         }, function errorCallback(response) {
@@ -72,6 +74,7 @@ angular.module('core.authentication')
 
       $window.localStorage.removeItem('token');
       $window.localStorage.removeItem('_id');
+      $http.defaults.headers.common.Authorization = null;
       return $http(config)
         .then(function successCallback(response) {
           return response;

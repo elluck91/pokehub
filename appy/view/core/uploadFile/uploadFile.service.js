@@ -1,6 +1,10 @@
 angular.module('core.uploadFile')
 .service('UploadFile', [
 	'Auth',
+	'$http',
+
+	this.createFile = createFile;
+
 	function UploadFile(Auth){
 		var self = this;
 		/*
@@ -37,7 +41,9 @@ angular.module('core.uploadFile')
 				if(xhr.readyState === 4){
 					if(xhr.status === 200){
 						const response = JSON.parse(xhr.responseText);
-						pathfile = self.putOnS3(file, response.signedRequest, response.url);
+						self.putOnS3(file, response.signedRequest, response.url);
+						debugger
+						createFile(file, response.url);
 						
 					} else {
 						alert('Could not get signed URL.');
@@ -52,28 +58,25 @@ angular.module('core.uploadFile')
 			return file.filePath;
 		}
 
-		this.createFile = function(Auth, file, filepath) {
-			var postData = [{
+		function createFile(file, filepath) {
+			var postData = {
 				name: file.name,
 				type: file.type,
 				path: filepath
-				//_id: Auth.getId()
-			}];
-
-			var config = {
-				url: '/file',
-				method: 'POST',
-				headers: {
-					authorization: Auth.getToken() },
-				data: postData
+				
 			};
-			
-			return $http(config)
-				.then(function successCallback(response) {
-					
-			}, function errorCallback(response) {
-		
-			});
+			return $http({                 
+				method: 'POST',                 
+				url: "localhost:8000/view/file",                 
+				data: postData             
+			})
+			.then(function(result) {
+				console.log(result);
+			})
+			.catch(function(error) {
+				console.log(error);
+			})
+
 		
 		}
 
