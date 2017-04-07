@@ -4,5 +4,5 @@ angular.module('core', [
 	'core.uploadFile',
 	'core.data',
 	'core.menu',
-	'core.fileViewer'
+	'core.fileViewer',
 ]);

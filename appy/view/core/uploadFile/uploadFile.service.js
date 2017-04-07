@@ -3,7 +3,7 @@ angular.module('core.uploadFile')
 	'Auth',
 	'$http',
 
-	function UploadFile(Auth){
+	function UploadFile(Auth, $http){
 		var self = this;
 		/*
 		Function to carry out the actual PUT request to S3 using the signed request from the app.
@@ -52,10 +52,6 @@ angular.module('core.uploadFile')
 			return pathfile;
 		};
 
-		this.getFilePath = function (file){
-			return file.filePath;
-		}
-
 		function createFile(file, filepath) {
 			var postData = {
 				name: file.name,
@@ -63,20 +59,58 @@ angular.module('core.uploadFile')
 				path: filepath
 				
 			};
-			return $http({                 
-				method: 'POST',                 
-				url: "localhost:8000/file",                 
-				data: postData             
-			})
-			.then(function(result) {
-				console.log(result);
-			})
-			.catch(function(error) {
-				console.log(error);
-			})
+			return $http.post('/file', postData)
+				.then(function(result) {
+					var params = {
+						body : 
+					}
+					return $http.get('/user/' + Auth.getId() + '/file')
+						.then(function(result) {
+							console.log(result);
+						})
+						.catch(function(error) {
+							console.log(error);
+						})
+
+				})
+				.then(function(result) {
+					console.log(result);
+				})
+				.catch(function(error) {
+					console.log(error);
+				})
 
 		
 		}
+
+		this.getAllFiles = function() {
+			var params = {
+				$embed : 'users'
+			}
+			return $http.get('/file')
+				.then(function(result) {
+					console.log(result);
+				})
+				.catch(function(error) {
+					console.log(error);
+				})
+		}
+
+		this.getUserFiles = function() {
+			var params = {
+				$embed : 'files',
+			}
+			var id = Auth.getId();
+			return $http.get('/user/' + id)
+				.then(function(result) {
+					console.log(result);
+				})
+				.catch(function(error) {
+					console.log(error);
+				})
+		}
+
+
 
 		this.addFileToUser = function(file, Auth) {
 

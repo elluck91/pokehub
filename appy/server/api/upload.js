@@ -15,13 +15,11 @@ module.exports = function (server, mongoose, logger) {
 					var nameParts = request.params.names.split('/');
 					var fileName = nameParts[0];
 					var fileType = nameParts[1] + '/' + nameParts[2];
-					var filePath = nameParts[3];
 					var s3Params = {
 						Bucket: Config.get('/constants/BUCKET_NAME'),
 						Key: fileName,
 						Expires: 60,
 						ContentType: fileType,
-						Body : filePath, 
 						ACL: 'public-read'
 					};
 					s3.getSignedUrl('putObject', s3Params, (err, data) => {
