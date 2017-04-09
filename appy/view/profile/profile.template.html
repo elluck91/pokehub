@@ -4,6 +4,11 @@
 		<h1 class="header black-text">{{vm.firstName}} {{vm.lastName}}</h1>
 		<div class="divider"></div>
 	</div>
+
+	<div class="row">
+		<h1 ng-repeat="a in vm.x">{{a}}</h1>
+		<div class="divider"></div>
+	</div>
 	<ul>
 		<li ng-repeat="files in vm.file"> {{ files }}</li>
 	</ul>

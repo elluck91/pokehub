@@ -3,6 +3,7 @@ angular.module('core.authentication')
   '$http',
   '$window',
   function Auth($http, $window) {
+
     this.saveToken = function (token){
       $window.localStorage['token'] = token;
     };
@@ -22,6 +23,11 @@ angular.module('core.authentication')
     this.getLastName = function () {
       return $window.localStorage['lastName'];
     };
+
+    this.getFiles = function() {
+      var names = JSON.parse($window.localStorage.getItem('files'));
+      return names;
+    }
 /*
     var currentUser = function() {
       if(isLoggedIn()){
@@ -54,7 +60,11 @@ angular.module('core.authentication')
             $window.localStorage['_id'] = response.data.user['_id'];
             $window.localStorage['firstName'] = response.data.user['firstName'];
             $window.localStorage['lastName'] = response.data.user['lastName'];
-
+            var data = [];
+            for (i = 0; i < response.data.user.files.length; i++) {
+              data[i] = response.data.user.files[i];
+            }
+            $window.localStorage.setItem('files', JSON.stringify(data));
             $http.defaults.headers.common.Authorization = response.data['refreshToken'];
           }
           return response;
@@ -83,5 +93,14 @@ angular.module('core.authentication')
         }
       );
     };
+
+    this.addFileToScope = function(file, filepath) {
+      var a = [];
+      a = JSON.parse($window.localStorage.getItem('files'));
+      a.push(file);
+      $window.localStorage.setItem('files', JSON.stringify(a));
+    };
   }
+
+ 
 ]);

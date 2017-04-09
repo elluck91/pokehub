@@ -15,6 +15,7 @@ angular.module('login')
 				.login(vm.credentials)
 				.then(function(response){
 					if(response.data['refreshToken']){
+						Auth.getFiles();
 						$location.path('view/profile');
 					}
 				});

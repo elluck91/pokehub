@@ -1,2 +1,5 @@
 angular.module('home')
-.controller('homeCtrl', function homeCtrl() { });
+.controller('homeCtrl',
+	function homeCtrl() { 
+		
+});

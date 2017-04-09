@@ -15,12 +15,15 @@ angular.module('core.fileViewer')
 						var file = files[i];
 						if (!file.$error) {
 							UploadFile.uploadToS3(file);
-							
+							$scope.names = Auth.getFiles();
 						}
 					}
 				}
 			});
-			var contents = UploadFile.getUserFiles();
+			$scope.names = Auth.getFiles();
+			
+
 		}],
+
 	controllerAs: 'vm'
 });

@@ -20,8 +20,12 @@ angular.module('pokeHubApp', [
 		return $http(config)
 			.then(function successCallback(response) {
 				if(response.status === 200){
+					var token = Auth.getToken()
+					Auth.saveToken(token);
 					$location.path('view/profile');
 				}
+				else
+					$location.path('view');
 			}, function errorCallback(response) {
 				console.log(response);
 			});
