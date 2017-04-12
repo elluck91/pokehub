@@ -12,16 +12,20 @@ angular.module('register')
 			};
 
 			vm.onSubmit = function () {
-				// console.log('Submitting registration');
-
-				var registerBody = vm.credentials;
-				registerBody.role = 'User';
-				registerBody = {
-					user: registerBody,
-					registerType: 'Register'
-				};
+				console.log(vm.credentials);
+				var params = {
+				  "user": {
+				    "firstName": vm.credentials.firstName,
+				    "lastName": vm.credentials.lastName,
+				    "email": vm.credentials.email,
+				    "role": "User",
+				    "password": vm.credentials.password
+				  },
+				  "registerType": "Register"
+				}
+				
 				Auth
-					.register(registerBody)
+					.register(params)
 					.then( function(response) {
 						if(response.data['message'] === 'Success.') {
 							$location.path('view/status/emailSent');

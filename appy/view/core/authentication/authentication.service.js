@@ -95,12 +95,33 @@ angular.module('core.authentication')
     };
 
     this.addFileToScope = function(file, filepath) {
-      var a = [];
-      a = JSON.parse($window.localStorage.getItem('files'));
-      a.push(file);
-      $window.localStorage.setItem('files', JSON.stringify(a));
+      
     };
-  }
+  
 
- 
+  this.createFile = function(file, filepath) {
+      var userId = this.getId();
+      var params = {
+        name: file.name,
+        type: file.type,
+        path: filepath
+      }
+      return $http.post('/file', params)
+        .then(function(result) {
+          var fileId = result.data._id;
+          var params = [fileId];
+          return $http.post('/user/' + userId + '/file', params)
+        })
+        .then(function(result) {
+          var a = [];
+          a = JSON.parse($window.localStorage.getItem('files'));
+          a.push(file);
+          $window.localStorage.setItem('files', JSON.stringify(a));
+        })
+        .catch(function(error) {
+          console.log(error);
+        })
+    }
+
+ }
 ]);
