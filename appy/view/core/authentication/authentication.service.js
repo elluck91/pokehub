@@ -2,7 +2,10 @@ angular.module('core.authentication')
 .service('Auth', [
   '$http',
   '$window',
-  function Auth($http, $window) {
+  '$timeout',
+  function Auth($http, $window, $timeout) {
+
+    var age = 10;
 
     this.saveToken = function (token){
       $window.localStorage['token'] = token;
@@ -28,6 +31,42 @@ angular.module('core.authentication')
       var names = JSON.parse($window.localStorage.getItem('files'));
       return names;
     }
+
+    this.setAge = function(age) {
+      age = age;
+    }
+
+    this.getAge = function() {
+      return age;
+    }
+
+    this.getData = function() {
+      return data;
+    }
+
+    var data = { 
+      lastUpdated: [], 
+    };
+
+    this.updateTimer = function() {
+      var userId = this.getId();
+      headers: {
+          authorization: $window.localStorage['token']
+        }
+
+      return $http.get('/user/' + userId + '/file')
+        .then(function(result) {
+          data.lastUpdated = [];
+          for (i = 0; i < result.data.docs.length; i++) {
+            data.lastUpdated.push(result.data.docs[i]['name']);
+
+          }
+
+          console.log(data.lastUpdated)
+        })
+    };
+
+    
 /*
     var currentUser = function() {
       if(isLoggedIn()){
@@ -100,6 +139,7 @@ angular.module('core.authentication')
   
 
   this.createFile = function(file, filepath) {
+
       var userId = this.getId();
       var params = {
         name: file.name,
@@ -112,16 +152,9 @@ angular.module('core.authentication')
           var params = [fileId];
           return $http.post('/user/' + userId + '/file', params)
         })
-        .then(function(result) {
-          var a = [];
-          a = JSON.parse($window.localStorage.getItem('files'));
-          a.push(file);
-          $window.localStorage.setItem('files', JSON.stringify(a));
-        })
-        .catch(function(error) {
-          console.log(error);
-        })
     }
+
+
 
  }
 ]);

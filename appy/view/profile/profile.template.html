@@ -1,16 +1,18 @@
 <menu-bar></menu-bar>
 <div class="container">
 	<div class="row">
-		<h1 class="header black-text">{{vm.firstName}} {{vm.lastName}}</h1>
+		<h1 class="header black-text">{{vm.firstName}} {{vm.lastName}} {{$scope.age}}</h1>
 		<div class="divider"></div>
 	</div>
 
+	<file-viewer></file-viewer>
 	<div class="row">
+	<p ng-repeat="x in model.lastUpdated">{{x}}</p>
 		<h1 ng-repeat="a in vm.x">{{a}}</h1>
 		<div class="divider"></div>
 	</div>
-	<ul>
-		<li ng-repeat="files in vm.file"> {{ files }}</li>
-	</ul>
-	<file-viewer></file-viewer>
+
+	
+
+	
 </div>

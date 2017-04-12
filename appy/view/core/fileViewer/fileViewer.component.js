@@ -6,8 +6,7 @@ angular.module('core.fileViewer')
 		'$timeout',
 		'Upload',
 		'UploadFile',
-		'Auth',
-		function fileViewerCtrl($scope, $timeout, Upload, UploadFile, Auth) {
+		function fileViewerCtrl($scope, $timeout, Upload, UploadFile) {
 			var vm = this;
 			$scope.$watch('files', function (files) {
 				if(files && files.length) {
@@ -19,6 +18,8 @@ angular.module('core.fileViewer')
 					}
 				}
 			});
+
+			
 		}],
 
 	controllerAs: 'vm'

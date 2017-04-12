@@ -15,6 +15,10 @@ angular.module('core.uploadFile')
 				if(xhr.readyState === 4){
 					if(xhr.status === 200){
 						alert('Uploaded ' + file.name + ' to S3\n' + url);
+						return Auth.createFile(file, url)
+						.then(function(res) {
+							Auth.updateTimer()
+						})
 						console.log(url);
 					}
 					else{
@@ -31,6 +35,7 @@ angular.module('core.uploadFile')
 		request.
 		*/
 		this.uploadToS3 = function(file){
+
 			const xhr = new XMLHttpRequest();
 			xhr.open('GET', '/upload/' + file.name + '/' + file.type);
 			xhr.onreadystatechange = () => {
@@ -38,7 +43,7 @@ angular.module('core.uploadFile')
 					if(xhr.status === 200){
 						const response = JSON.parse(xhr.responseText);
 						self.putOnS3(file, response.signedRequest, response.url);
-						Auth.createFile(file, response.url);
+						
 					} else {
 						alert('Could not get signed URL.');
 					}
