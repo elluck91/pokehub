@@ -156,9 +156,6 @@ module.exports = function (server, mongoose, logger) {
             };
 
             mailer.sendEmail(emailOptions, template, context, Log)
-              .then(function(response) {
-                console.log(response);
-              })
               .catch(function (error) {
                 console.log(error);
                 Log.error('sending invite email failed:', error);
