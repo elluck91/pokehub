@@ -158,7 +158,7 @@ const config = {
 
     $filter: 'env',
 
-    local: 'pkmgarcia.disposable@gmail.com',
+    local: null,
 
     development: null,
 
@@ -180,7 +180,7 @@ const config = {
 
       name: 'appy',
 
-      address: 'appyhapi@gmail.com'
+      address: 'pkmgarcia.disposable@gmail.com'
 
     }
 
@@ -190,11 +190,11 @@ const config = {
 
     $filter: 'env',
 
-    local: 'http://localhost:' + constants.PORT,
+    local: 'http://54.202.137.14:' + constants.PORT,
 
     production: 'http://54.202.137.14:' + constants.PORT,
 
-    $default: 'http://localhost:' + constants.PORT
+    $default: 'http://54.202.137.14:' + constants.PORT
 
   },
 
